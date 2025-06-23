@@ -97,7 +97,7 @@ class View[T](AbstractQuery[T]):
         :param restriction: Optional restrictions to apply to the query.
         :return: A result set from the server.
         """
-        from triggerware import ResultSet
+        from triggerware.result_set import ResultSet
         params = self.base_parameters.copy()
         if restriction is not None:
             if restriction.row_limit is not None:
@@ -146,7 +146,7 @@ class PreparedQuery[T](AbstractQuery[T]):
 
     def set_parameter(self, position: str | int, param: Any) -> None:
         """Sets an unbound value in the query string to a specific value."""
-        from triggerware import PreparedQueryException
+        from triggerware.types import PreparedQueryException
         if not self.uses_named_params and isinstance(position, str):
             raise PreparedQueryException("This query uses positional parameters.")
 
@@ -167,7 +167,7 @@ class PreparedQuery[T](AbstractQuery[T]):
 
     def get_parameter(self, position: str | int) -> Any:
         """Gets the value of a parameter in the query string."""
-        from triggerware import PreparedQueryException
+        from triggerware.types import PreparedQueryException
         if not self.uses_named_params and isinstance(position, str):
             raise PreparedQueryException("This query uses positional parameters.")
 
@@ -190,7 +190,7 @@ class PreparedQuery[T](AbstractQuery[T]):
 
     def execute(self, restriction: "tw.ResourceRestricted | None" = None) -> "tw.ResultSet[T]":
         """Executes this query on the Triggerware server and returns a ResultSet."""
-        from triggerware import ResultSet
+        from triggerware.result_set import ResultSet
         parameters = {
             "handle": self.handle,
             "inputs": self.prepared_params,

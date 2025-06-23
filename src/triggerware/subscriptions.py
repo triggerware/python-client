@@ -41,7 +41,7 @@ class Subscription[T](ABC, AbstractQuery[T]):
         query: "tw.Query",
         active: bool = True
     ):
-        from triggerware import TriggerwareClient
+        from triggerware.triggerware_client import TriggerwareClient
         from triggerware.jrpc import JsonRpcMessageHandler
         client = client_or_batch if isinstance(client_or_batch, TriggerwareClient) else client_or_batch.client
         super().__init__(client, query)
@@ -66,7 +66,7 @@ class Subscription[T](ABC, AbstractQuery[T]):
         """
         Activates the subscription, enabling notifications to be sent from the server.
         """
-        from triggerware import SubscriptionException
+        from triggerware.types import SubscriptionException
         if self._batch:
             raise SubscriptionException("Cannot activate subscription that is part of a batch.")
 
@@ -82,7 +82,7 @@ class Subscription[T](ABC, AbstractQuery[T]):
         """
         Deactivates the subscription, disabling notifications from the server.
         """
-        from triggerware import SubscriptionException
+        from triggerware.types import SubscriptionException
         if self._batch:
             raise SubscriptionException("Cannot deactivate a subscription that is part of a batch.")
 
@@ -99,7 +99,7 @@ class Subscription[T](ABC, AbstractQuery[T]):
         Adds the subscription to the provided batch. Alternatively, you may call a batch's 
         add_subscription method.
         """
-        from triggerware import SubscriptionException
+        from triggerware.types import SubscriptionException
         if self._active:
             raise SubscriptionException("Cannot add active subscription to a batch.")
 
@@ -119,7 +119,7 @@ class Subscription[T](ABC, AbstractQuery[T]):
         Removes the subscription from its current batch. Alternatively, you may call a batch's
         remove_subscription method.
         """
-        from triggerware import SubscriptionException
+        from triggerware.types import SubscriptionException
         if not self._batch:
             raise SubscriptionException("Subscription is not part of a batch.")
 
@@ -184,7 +184,7 @@ class BatchSubscription(TriggerwareObject):
         Removes a subscription from the batch. Alternatively, you may call a subscription's
         remove_from_batch method.
         """
-        from triggerware import SubscriptionException
+        from triggerware.types import SubscriptionException
         if subscription.label not in self._subscriptions:
             raise SubscriptionException("Subscription is not part of this batch.")
 

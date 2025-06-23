@@ -37,7 +37,7 @@ class TriggerwareClient:
         :param query: The query to execute.
         :param restriction: Optional restrictions to apply to the query.
         """
-        from triggerware import View
+        from triggerware.queries import View
         view = View(self, query, restriction)
         return view.execute()
 
@@ -48,7 +48,7 @@ class TriggerwareClient:
         :param query: The query to validate.
         """
         from triggerware.jrpc import InternalErrorException, ServerErrorException, JsonRpcException
-        from triggerware import InvalidQueryException
+        from triggerware.types import InvalidQueryException
         params = [
             query.query,
             query.language,
@@ -69,7 +69,7 @@ class TriggerwareClient:
         compartmentalized into groups, sorted by use case. Each element in a group contains
         signature information for how to use the conncetor in a query.
         """
-        from triggerware import RelDataElement, RelDataGroup
+        from triggerware.types import RelDataElement, RelDataGroup
         raw_groups = self.json_rpc.call('reldata2017', [])
         groups = []
         if (isinstance(raw_groups, list)):

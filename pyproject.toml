@@ -4,8 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["godofavacyn <aidenmeyer@mailbox.org>"]
 readme = "README.md"
-packages = [{include = "src"}]
-exclude = ["src/stuff"]
+packages = [{include = "triggerware", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
