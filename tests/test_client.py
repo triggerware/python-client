@@ -1,6 +1,6 @@
 import pytest
 
-import triggerware as tw
+import src.triggerware as tw
 
 def test_view():
     client = tw.TriggerwareClient("localhost", 5221)

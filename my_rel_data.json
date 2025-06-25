@@ -1,0 +1,2550 @@
+[
+    {
+        "name": "ARITHMETIC",
+        "symbol": "fa-plus-circle",
+        "elements": [
+            {
+                "name": "ROUND-TO-INTEGER",
+                "signature_names": [
+                    "REAL",
+                    "RESULT"
+                ],
+                "signature_types": [
+                    "NUMBER",
+                    "INTEGER"
+                ],
+                "usage": "(round number integer) applies Lisp round function on the first parameter, required",
+                "no_idea": [
+                    "=",
+                    "="
+                ],
+                "description": "Round a real number to an integer"
+            },
+            {
+                "name": "INTEGER-IN-RANGE",
+                "signature_names": [
+                    "NUM",
+                    "LOW",
+                    "HIGH"
+                ],
+                "signature_types": [
+                    "INTEGER",
+                    "INTEGER",
+                    "INTEGER"
+                ],
+                "usage": "(integer-in-range integer1 integer2 integer3) is true if\ninteger1 is in the range [integer2,integer3], i.e., \ninteger2&lt;=integer1&lt;=integer3.\nThis can only be used to generate integer1 from integer2 and integer3.",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "Check if a number is between two other numbers"
+            },
+            {
+                "name": "/",
+                "signature_names": [
+                    "NUM1",
+                    "NUM2",
+                    "QUOTIENT"
+                ],
+                "signature_types": [
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(/ number1 number2 number3) is true if number1 / number2 = number3.\nThis can only be used to generate any of the three arguments from the \nother two.",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "Arithmetic division operator"
+            },
+            {
+                "name": "*",
+                "signature_names": [
+                    "NUM1",
+                    "NUM2",
+                    "PRODUCT"
+                ],
+                "signature_types": [
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(* number1 number2 number3) is true if number1 x number2 = number3.\nThis can only be used to generate number3 from number1 and number2.",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "Arithmetic multiplication operator"
+            },
+            {
+                "name": "+",
+                "signature_names": [
+                    "NUM1",
+                    "NUM2",
+                    "SUM"
+                ],
+                "signature_types": [
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(+ number1 number2 number3) is true if number1 + number2 = number3.\nThis can be used to generate any argument given the other two.",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "Arithmetic plus operator"
+            },
+            {
+                "name": "<=",
+                "signature_names": [
+                    "NUM1",
+                    "NUM2"
+                ],
+                "signature_types": [
+                    "REAL",
+                    "REAL"
+                ],
+                "usage": "(&lt;= number1 number2) is true if the first number is less than or equal to\nthe second.\nThis can be used for comparing constants to variables, variables to variables,\nor contants to constants.",
+                "no_idea": [
+                    "=",
+                    "="
+                ],
+                "description": "Less than or equal Comparison operator"
+            },
+            {
+                "name": ">=",
+                "signature_names": [
+                    "NUM1",
+                    "NUM2"
+                ],
+                "signature_types": [
+                    "REAL",
+                    "REAL"
+                ],
+                "usage": "(&gt;= number1 number2) is true if the first number is greater than or equal \nto the second.\nThis can be used for comparing constants to variables, variables to variables,\nor contants to constants.",
+                "no_idea": [
+                    "=",
+                    "="
+                ],
+                "description": "Greater than or equal Comparison operator"
+            },
+            {
+                "name": "<",
+                "signature_names": [
+                    "NUM1",
+                    "NUM2"
+                ],
+                "signature_types": [
+                    "REAL",
+                    "REAL"
+                ],
+                "usage": "(&lt; number1 number2) is true if the first number is less than the second.\nThis can be used for comparing constants to variables, variables to variables,\nor contants to constants.",
+                "no_idea": [
+                    "=",
+                    "="
+                ],
+                "description": "Less than Comparison operator"
+            },
+            {
+                "name": ">",
+                "signature_names": [
+                    "NUM1",
+                    "NUM2"
+                ],
+                "signature_types": [
+                    "REAL",
+                    "REAL"
+                ],
+                "usage": "(&gt; number1 number2) is true if the first number is more than the second.\nThis can be used for comparing constants to variables, variables to variables,\nor contants to constants.",
+                "no_idea": [
+                    "=",
+                    "="
+                ],
+                "description": "Greater than Comparison operator"
+            },
+            {
+                "name": "=",
+                "signature_names": [
+                    "ARG1",
+                    "ARG2"
+                ],
+                "signature_types": [
+                    "ENTITY",
+                    "ENTITY"
+                ],
+                "usage": "(= number1 number2) is true if the two numbers are equal\nThis can be used for comparing constants to variables, variables to variables,\nor contants to constants, but it is typically not needed because one can\nsimply replace a variable in the query with a constant or another variable.",
+                "no_idea": [
+                    "=",
+                    "="
+                ],
+                "description": "Equality Comparison of numbers"
+            }
+        ]
+    },
+    {
+        "name": "CA-BUSINESS",
+        "symbol": "fa-industry",
+        "elements": [
+            {
+                "name": "BIZFILE-DETAILS",
+                "signature_names": [
+                    "ID",
+                    "PADDRESS",
+                    "MADDRESS",
+                    "SOS-STANDING",
+                    "FTB-STANDING",
+                    "AGENT-STANDING",
+                    "VCFCF-STANDING"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(bizfile-details id principal-address mailing-address sos-standing ftb-standing agent-standing vcfcf-standing)\n means that https://bizfileonline.sos.ca.gov/search/business, when given\n the ID as input, returns the detailed data for a business with that ID.\n This data is currently not cached.",
+                "no_idea": [
+                    "=",
+                    "STRING-EQUAL",
+                    "STRING-EQUAL",
+                    "STRING-EQUAL",
+                    "STRING-EQUAL",
+                    "STRING-EQUAL",
+                    "STRING-EQUAL"
+                ],
+                "description": "Retrieve details for California business matching unique id"
+            },
+            {
+                "name": "BIZFILE-FIND",
+                "signature_names": [
+                    "SEARCHFOR",
+                    "TITLE",
+                    "ID",
+                    "TYPE",
+                    "FORMEDIN",
+                    "AGENT",
+                    "FILINGDATE"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(bizfile-find searchfor title id type formedin agent filingdate)\n means that https://bizfileonline.sos.ca.gov/search/business, when given\n the search string as input, returns data for matching businesses.\n This data is currently not cached.",
+                "no_idea": [
+                    "STRING-EQUAL",
+                    "STRING=",
+                    "=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Search California business registry for matches"
+            }
+        ]
+    },
+    {
+        "name": "CLINICAL-TRIALS",
+        "symbol": "",
+        "elements": [
+            {
+                "name": "CLINICALTRIAL-LOCATIONS",
+                "signature_names": [
+                    "TRIAL",
+                    "FACILITY",
+                    "CITY",
+                    "STATE",
+                    "ZIP",
+                    "STATUS"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "Provides the listed locations for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Return the locations for a trial"
+            },
+            {
+                "name": "CLINICALTRIAL-OFFICIALS",
+                "signature_names": [
+                    "TRIAL",
+                    "NAME",
+                    "AFFILIATION",
+                    "ROLE"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "Provides the listed officials and roles for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Return the officials for the trial"
+            },
+            {
+                "name": "CLINICALTRIAL-ELIGIBILITY-HEALTHY",
+                "signature_names": [
+                    "TRIAL",
+                    "HEALTHY"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "JSON-VALUE"
+                ],
+                "usage": "Provides the eligibility HEALTHY criteria for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "JSON="
+                ],
+                "description": "Return if the trial participant is to be healthy or not"
+            },
+            {
+                "name": "CLINICALTRIAL-ELIGIBILITY-SEX",
+                "signature_names": [
+                    "TRIAL",
+                    "SEX"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "STRING"
+                ],
+                "usage": "Provides the eligibility gender criteria for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "STRING="
+                ],
+                "description": "Return the eligibility sex / gender for a trial"
+            },
+            {
+                "name": "CLINICALTRIAL-ELIGIBILITY-INCLUSION",
+                "signature_names": [
+                    "TRIAL",
+                    "INCLUSION"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "STRING"
+                ],
+                "usage": "Provides the eligibility INCLUSION criteria for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "STRING="
+                ],
+                "description": "Return the inclusion for a trial"
+            },
+            {
+                "name": "CLINICALTRIAL-ELIGIBILITY-EXCLUSION",
+                "signature_names": [
+                    "TRIAL",
+                    "EXCLUSION"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "STRING"
+                ],
+                "usage": "Provides the eiligibility EXCLUSION criteria for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "STRING="
+                ],
+                "description": "Return the exclusion for a trial"
+            },
+            {
+                "name": "CLINICALTRIAL-ELIGIBILITY-STRING",
+                "signature_names": [
+                    "TRIAL",
+                    "ELIGIBILITY"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "JSON-VALUE"
+                ],
+                "usage": "Provides the eligibility criteria for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "STRING="
+                ],
+                "description": "Return the eligibility criteria for a trial as a string"
+            },
+            {
+                "name": "CLINICALTRIAL-ELIGIBILITY",
+                "signature_names": [
+                    "TRIAL",
+                    "ELIGIBILITY"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "JSON-VALUE"
+                ],
+                "usage": "Provides the eligibility criteria for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "JSON="
+                ],
+                "description": "Return the eligibility criteria for a trial as json"
+            },
+            {
+                "name": "CLINICALTRIAL-OVERALLSTATUS",
+                "signature_names": [
+                    "TRIAL",
+                    "STATUS"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "STRING"
+                ],
+                "usage": "Provides the overall status for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "STRING="
+                ],
+                "description": "Return the status for a trial"
+            },
+            {
+                "name": "CLINICALTRIAL-BRIEFTITLE",
+                "signature_names": [
+                    "TRIAL",
+                    "TITLE"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "STRING"
+                ],
+                "usage": "Provides the brief title field for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "STRING="
+                ],
+                "description": "Return the title for a trial"
+            },
+            {
+                "name": "CLINICALTRIAL-NCTID",
+                "signature_names": [
+                    "TRIAL",
+                    "NCTID"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "STRING"
+                ],
+                "usage": "Provides the NCTID for a given trial",
+                "no_idea": [
+                    "JSON=",
+                    "STRING="
+                ],
+                "description": "Return the NCTID for a trial"
+            },
+            {
+                "name": "CLINICALTRIALS-API-SEARCH",
+                "signature_names": [
+                    "SEARCHSPEC",
+                    "TRIAL"
+                ],
+                "signature_types": [
+                    "JSON-VALUE",
+                    "JSON-VALUE"
+                ],
+                "usage": "(clinicaltrials-api-search searchspec study)\nmeans that the api at https://www.clinicaltrials.gov/api/v2/studies\nreturns the study (as one element of a set), when given as its search\nparameters the set of things in the searchspec.  The api is described at\nhttps://www.clinicaltrials.gov/data-about-studies/learn-about-api.\nThe searchspec is a json encoding of the search parameters.\nThe resulting studies are similarly represented as json objects.\nThe api is capable of generating 1000 results at a time and returns\na token that can be used to get more, but that is not used in this\nimplementation.\nThis relation can only be accessed by supplying a searchspec and retrieving\na set of studies.",
+                "no_idea": [
+                    "JSON=",
+                    "JSON="
+                ],
+                "description": "Search table for new ct.gov API"
+            },
+            {
+                "name": "CLINICALTRIALS-SEARCH",
+                "signature_names": [
+                    "SEARCHSTRING",
+                    "NCTNUMBER",
+                    "TITLE",
+                    "URL",
+                    "ACRONYM",
+                    "STATUS",
+                    "SUMMARY",
+                    "RESULTS",
+                    "CONDITIONS",
+                    "INTERVENTIONS",
+                    "PRIMARYOUTCOMEMEASURES",
+                    "SECONDARYOUTCOMEMEASURES",
+                    "OTHEROUTCOMEMEASURES",
+                    "SPONSOR",
+                    "COLLABORATORS",
+                    "SEX",
+                    "AGE",
+                    "PHASES",
+                    "ENROLLMENT",
+                    "FUNDERTYPE",
+                    "STUDYTYPE",
+                    "STUDYDESIGNS",
+                    "OTHERIDS",
+                    "STARTDATE",
+                    "PRIMARYCOMPLETIONDATE",
+                    "COMPLETIONDATE",
+                    "FIRSTPOSTED",
+                    "RESULTSFIRSTPOSTED",
+                    "LASTUPDATEPOSTED",
+                    "LOCATIONS",
+                    "STUDYDOCUMENTS"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(clinicaltrials-search searchstring NCTNumber Title URL Acronym\n    Status Summary Results Conditions Interventions \n    PrimaryOutcomeMeasures SecondaryOutcomeMeasures OtherOutcomeMeasures\n    Sponsor Collaborators Sex Age Phases Enrollment FunderType\n    StudyType StudyDesigns OtherIDs StartDate PrimaryCompletionDate\n    CompletionDate FirstPosted ResultsFirstPosted LastUpdatePosted\n    Locations StudyDocuments)\nmeans that when the search string is used as input to www.clinicaltrials.gov\nsearch, the rest of the arguments are returned as results.  \nThe only output we claim to understand is the url which leads to data about\na particular study that is considered to be a search result for the input\nsearchstring.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Search table for general ct.gov"
+            }
+        ]
+    },
+    {
+        "name": "DISA",
+        "symbol": "",
+        "elements": [
+            {
+                "name": "NEGATIVE-TWEET",
+                "signature_names": [
+                    "TIMESTAMP",
+                    "DATE",
+                    "TIME",
+                    "MESSAGE",
+                    "TOPIC"
+                ],
+                "signature_types": [
+                    "TIMESTAMP",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "PHILOSOPHER",
+                "signature_names": [
+                    "NAME"
+                ],
+                "signature_types": [
+                    "STRING"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "STRING="
+                ],
+                "description": "List of philsophers who are Twitter targets!"
+            }
+        ]
+    },
+    {
+        "name": "FAERS",
+        "symbol": "",
+        "elements": [
+            {
+                "name": "INDICATION",
+                "signature_names": [
+                    "primaryid",
+                    "caseid",
+                    "indi_drug_seq",
+                    "indi_pt"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "NUMBER",
+                    "STRING"
+                ],
+                "usage": "FAERS data capture of the underlying condition for which drug(s) recommended.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "=",
+                    "STRING="
+                ],
+                "description": "FDA data - why drug was prescribe"
+            },
+            {
+                "name": "DEMOGRAPHIC",
+                "signature_names": [
+                    "primaryid",
+                    "caseid",
+                    "caseversion",
+                    "i_f_code",
+                    "event_dt",
+                    "mfr_dt",
+                    "init_fda_dt",
+                    "fda_dt",
+                    "rept_cod",
+                    "auth_num",
+                    "mfr_num",
+                    "mfr_sndr",
+                    "lit_ref",
+                    "age",
+                    "age_cod",
+                    "age_grp",
+                    "sex",
+                    "e_sub",
+                    "wt",
+                    "wt_cod",
+                    "rept_dt",
+                    "to_mfr",
+                    "occp_cod",
+                    "reporter_country",
+                    "occr_country"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "Describes the FDA's patient demographic and administrative data -- one record per ",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "FDA data - demographics for an event"
+            },
+            {
+                "name": "DRUG",
+                "signature_names": [
+                    "primaryid",
+                    "caseid",
+                    "drug_seq",
+                    "role_cod",
+                    "drugname",
+                    "prod_ai",
+                    "val_vbm",
+                    "route",
+                    "dose_vbm",
+                    "cum_dose_chr",
+                    "cum_dose_unit",
+                    "dechal",
+                    "rechal",
+                    "lot_num",
+                    "exp_dt",
+                    "nda_num",
+                    "dose_amt",
+                    "dose_unit",
+                    "dose_form",
+                    "dose_freq"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "Contains drub/biologic data for as many medications as were reported for the event",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "FDA data - drug data for an event"
+            },
+            {
+                "name": "OUTCOME",
+                "signature_names": [
+                    "primaryid",
+                    "caseid",
+                    "outc_cod"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "Contains the outcomes data for an event",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "FDA data - outcome of an event"
+            },
+            {
+                "name": "REACTION",
+                "signature_names": [
+                    "primaryid",
+                    "caseid",
+                    "pt",
+                    "drug_rec_act"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "Describes the FDA's terms coded for the adverse events for various drugs.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "FDA data - reaction to a drug"
+            },
+            {
+                "name": "OCCP-CODE-INDEX",
+                "signature_names": [
+                    "code",
+                    "desc"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "FDA OCCP code"
+            },
+            {
+                "name": "AG-CODE-INDEX",
+                "signature_names": [
+                    "code",
+                    "desc"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "FDA ag code"
+            },
+            {
+                "name": "OT-CODE-INDEX",
+                "signature_names": [
+                    "code",
+                    "desc"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "FDA outcome code"
+            }
+        ]
+    },
+    {
+        "name": "FINANCE",
+        "symbol": "fa-usd",
+        "elements": [
+            {
+                "name": "CURRENCY-CONVERT",
+                "signature_names": [
+                    "CURRENCY1",
+                    "CURRENCY2",
+                    "DATE",
+                    "FACTOR"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING3INT",
+                    "NUMBER"
+                ],
+                "usage": "(currency-convert currency1 currency2 date factor)\nmeans that one unit of currency1 was worth factor units of currency2\non the given date.  The currencies are three letter codes such as\nUSD for US dollar.  See relation currency for currency codes.\n<br>Date has the form yyyy-mm-dd.  Factor is a number, e.g., 1.234\nThis data comes from http://www.x-rates.com/historical, which seems\nto have data back to 2005. \n<br>Currently this data is not cached at all.\n<br>The only way to access this relation is to supply the currencies and\ndate and generate the factor.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "INT-LIST-STRING=",
+                    "="
+                ],
+                "description": "Currency conversion computation"
+            },
+            {
+                "name": "CURRENCY",
+                "signature_names": [
+                    "CODE",
+                    "NAME"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(currency code name) means that there is a currency with the given three \nletter code and the given name, e.g., USD and US Dollar.\nThis data comes from http://www.x-rates.com/historical and is read\nonly at server startup.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "INFLATION",
+                "signature_names": [
+                    "YEAR1",
+                    "YEAR2",
+                    "FACTOR"
+                ],
+                "signature_types": [
+                    "INTEGER",
+                    "INTEGER",
+                    "NUMBER"
+                ],
+                "usage": "(inflation year1 year2 factor) means that one dollar in year1 is\n worth factor dollars in year2.  The years are numbers like 1995 and\n the factor is a number like 2.5.\n  The only way to access this relation is to supply year1 and year2\n and find factor.\n Data in this relation are only added, never revised or deleted.  \n Non-empty results are cached indefinitely and cache controls are ignored.",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "Inflation calculation for the US dollar"
+            }
+        ]
+    },
+    {
+        "name": "FOOD-INDUSTRY",
+        "symbol": "fa-flask",
+        "elements": [
+            {
+                "name": "GOVTRACK",
+                "signature_names": [
+                    "SEARCHSTRING",
+                    "BILL-URL",
+                    "NAME",
+                    "SPONSOR",
+                    "STATUS"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(govtrack searchstring bill-url name sponsor status)\nmeans that\n www.govtrack.us/congress/bills/subjects/agriculture_and_food/5816\nwhen asked to find <i>searchstring</i> returns an entry with the bill\nwith the given url (which describes the bill), name, sponsor and status.\n<br>This data can only be accessed by supplying the searchstring.  \nThe data retrieved are currently not cached.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "NCSL-HEMP-STATUTES",
+                "signature_names": [
+                    "STATE",
+                    "STATUTES"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(ncsl-hemp-statutes state statutes)\nshows data from the table at\nhttp://www.ncsl.org/research/agriculture-and-rural-development/state-industrial-hemp-statutes.aspx\nwhere state is the state name in the first column and statutes is\nthe text in the second column (which we don't know how to separate\ninto individual statutes)",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "NCSL-HEMP-SUMMARY",
+                "signature_names": [
+                    "STATE",
+                    "SUMMARY"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(ncsl-hemp-statutes state summary)\nshows data from the table at\nhttp://www.ncsl.org/research/agriculture-and-rural-development/state-industrial-hemp-statutes.aspx\nwhere state is the state name in the first column and summary is\none of the items in the text in the third column",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": ""
+            }
+        ]
+    },
+    {
+        "name": "LITSEARCH",
+        "symbol": "",
+        "elements": [
+            {
+                "name": "CLINICALTRIALS-SEARCH",
+                "signature_names": [
+                    "SEARCHSTRING",
+                    "NCTNUMBER",
+                    "TITLE",
+                    "URL",
+                    "ACRONYM",
+                    "STATUS",
+                    "SUMMARY",
+                    "RESULTS",
+                    "CONDITIONS",
+                    "INTERVENTIONS",
+                    "PRIMARYOUTCOMEMEASURES",
+                    "SECONDARYOUTCOMEMEASURES",
+                    "OTHEROUTCOMEMEASURES",
+                    "SPONSOR",
+                    "COLLABORATORS",
+                    "SEX",
+                    "AGE",
+                    "PHASES",
+                    "ENROLLMENT",
+                    "FUNDERTYPE",
+                    "STUDYTYPE",
+                    "STUDYDESIGNS",
+                    "OTHERIDS",
+                    "STARTDATE",
+                    "PRIMARYCOMPLETIONDATE",
+                    "COMPLETIONDATE",
+                    "FIRSTPOSTED",
+                    "RESULTSFIRSTPOSTED",
+                    "LASTUPDATEPOSTED",
+                    "LOCATIONS",
+                    "STUDYDOCUMENTS"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(clinicaltrials-search searchstring NCTNumber Title URL Acronym\n    Status Summary Results Conditions Interventions \n    PrimaryOutcomeMeasures SecondaryOutcomeMeasures OtherOutcomeMeasures\n    Sponsor Collaborators Sex Age Phases Enrollment FunderType\n    StudyType StudyDesigns OtherIDs StartDate PrimaryCompletionDate\n    CompletionDate FirstPosted ResultsFirstPosted LastUpdatePosted\n    Locations StudyDocuments)\nmeans that when the search string is used as input to www.clinicaltrials.gov\nsearch, the rest of the arguments are returned as results.  \nThe only output we claim to understand is the url which leads to data about\na particular study that is considered to be a search result for the input\nsearchstring.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Search table for general ct.gov"
+            },
+            {
+                "name": "DRUG-SIDE-EFFECT",
+                "signature_names": [
+                    "DRUG",
+                    "CATEGORY",
+                    "SYMPTOM"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(drug-side-effect drug category symptom)\n is true if https://www.drugs.com/sfx/[drug]-side-effects.html lists symptom\n under the given category (serious, other, professionals) meaning serious\n symptoms (see doctor immediately), other symptoms and descriptions for\n professionals, which tend to include frequency information.\n All of the parameters are strings.\n This relation can only be accessed by supplying the drug name as input.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Look up drugs.com for drug symptom"
+            },
+            {
+                "name": "PUBMED-SEARCH",
+                "signature_names": [
+                    "QUERY",
+                    "TITLE",
+                    "AUTHORS",
+                    "JOURNAL",
+                    "DETAILS",
+                    "PMID"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(pubmed-search query title authors journal details pmid)\n is true if a pubmed (www.ncbi.nlm.nih.gov/pubmed) search for the query string\n returns, among its first 20 results, one with the given title, authors, etc.\n All of the parameters are strings.  The details seems to contain things like\n date and page numbers (not clear how to parse it).  The pmid seems to be\n an id for this record and can be used to construct the link to the article\n at pubmed (https://www.ncbi.nlm.nih.gov/pubmed/[pmid]) and also to a link \n to similar articles\n (https://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed&from_uid=[pmid]).\n This relation can only be accessed by supplying the query string as input.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Medical literature search at pubmed"
+            },
+            {
+                "name": "DRUG-GENERIC-COMMON-BRAND",
+                "signature_names": [
+                    "GENERICNAME",
+                    "BRANDNAME"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(drug-generic-common-brand genericname brandname)\n uses google search to find the common brand names with the given generic\n drug name.  The generic name is required as input.\n The data that is found is cached for the life of the running server,\n since we don't expect this data to change.  However queries that don't\n find any results are not cached.\n Both of the parameters are strings.\n The implementation relies on the fact that (at least currently) when the\n search query is the generic name of a drug, the relevant data appears on\n the right side of the google result page with various labels that we\n assume to be used only for describing drugs.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Eumerate brand names corresponding to named generic drug"
+            },
+            {
+                "name": "DRUG-BRAND-GENERIC",
+                "signature_names": [
+                    "BRANDNAME",
+                    "GENERICNAME",
+                    "DRUGCLASS"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(drug-brand-generic brandname genericname drugclass)\n is intended to find the generic name of a drug from its brand name.\n The brand name is required as input and from this the generic name is\n generated, along with the drug class (like antibiotic).\n The data that is found is cached for the life of the running server,\n since we don't expect this data to change.  However queries that don't\n find any results are not cached.\n All of the parameters are strings.\n The implementation currently does a simple google search for the\n brand name, relying on the fact that (at least currently) when the\n search query is the name of a drug, the relevant data appears on the\n right side of the google result page with various labels that we assume\n to be used only for describing drugs.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Search for generic drug name for a branded drug"
+            }
+        ]
+    },
+    {
+        "name": "LOCATION",
+        "symbol": "fa-map-marker",
+        "elements": [
+            {
+                "name": "YELP",
+                "signature_names": [
+                    "SEARCHFOR",
+                    "LOCATION",
+                    "NAME",
+                    "ADDRESS",
+                    "LAT",
+                    "LON",
+                    "RATING",
+                    "NRATE"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(yelp searchfor location name address lat lon rating nreviews)\nmeans that http://www.yelp.com, when asked to find <i>searchfor</i> (such\nas hospital, pizza, ymca ...) near <i>location</i> (a zip code, city,\nor even an entire address), returns, among the first 10 (?) results, one with\nthe given name, address, etc.  Lat and lon are the latitude and longitude,\nrating is the average rating (# stars, e.g., 3.5), nreviews is\nthe number of reviews.\n<br>This data can only be accessed by supplying the searchfor and location.  \nThe rest is generated by constructing, retrieving and reading the url.\nData retrieved is cached and reused for 30 days.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "=",
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "YELP.com directory of vendors"
+            },
+            {
+                "name": "YELLOWPAGES",
+                "signature_names": [
+                    "SEARCHFOR",
+                    "LOCATION",
+                    "NAME",
+                    "BADDRESS",
+                    "CITY",
+                    "STATE",
+                    "ZIP",
+                    "MILES",
+                    "LAT",
+                    "LON"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(yellowpages searchfor location name address city state zip miles lat lon)\nmeans that http://www.yellowpages.com, when asked to find <i>searchfor</i>\n(such as hospital, pizza, ymca ...) near <i>location</i> (a zip code, city,\nor even an entire address), returns, among the closest 30 results, one with\nthe given name, address, city, state, and zip code.  Miles is the number\nof miles from the given location, lat and lon are the latitude and longitude.\n<br>This data can only be accessed by supplying the searchfor and location.  \nThe rest is generated by constructing, retrieving and reading the url.\nThe data retrieved are cached and reused for 30 days.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "YP.com directory of vendors"
+            },
+            {
+                "name": "GOOGLEMAPS-URL",
+                "signature_names": [
+                    "LATTITUDE",
+                    "LONGITUDE",
+                    "URL"
+                ],
+                "signature_types": [
+                    "NUMBER",
+                    "NUMBER",
+                    "STRING"
+                ],
+                "usage": "(googlemaps-url lattitute longitude url)\nmeans that the url shows a google map with the location at the given lattitude\nand logitude marked.  The url is computed from the lattitude and longitude.\nLattitude and longitude are numbers of degrees.",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "STRING="
+                ],
+                "description": "Mapping URL from Google"
+            },
+            {
+                "name": "GEODISTANCE",
+                "signature_names": [
+                    "LATITUDE1",
+                    "LONGITUDE1",
+                    "LATITUDE2",
+                    "LONGITUDE2",
+                    "KM",
+                    "MI"
+                ],
+                "signature_types": [
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(geodistance latitude1 longitude1 latitude2 longitude2 km mi)\nis true if the distance (as the crow flies, ignoring elevation) between\nthe two locations identified by (latitude1, longitude1) and\n(latitude2, longitude2) is km kilometers, which is the same as mi miles.\nThe latitudes and longitudes are numbers of degrees.\n<br>We use as the radius of the earth 6378 km, 3963.2 mi.",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "Compute distance between 2 points"
+            },
+            {
+                "name": "WEBGIS",
+                "signature_names": [
+                    "STREETADDR",
+                    "CITY",
+                    "STATE",
+                    "ZIP",
+                    "LATITUDE",
+                    "LONGITUDE",
+                    "SCORE",
+                    "GEOTYPE"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "NUMBER",
+                    "NUMBER",
+                    "INTEGER",
+                    "STRING"
+                ],
+                "usage": "(webgis streetaddr city state zip latitude longitude score geotype)\nmeans that lookup of streetaddr,city,state,zip (all text strings)\nat webgis.usc.edu returns the given latitude, longitude, score, type, geotype.\nThe state should be a 2 character state code.  Latitude and longitude are\nfloating point numbers.  The other outputs are described at\nhttp://webgis.usc.edu/Services/Geocode/WebService/GeocoderWebService.aspx:\nScore is a percentage describing how well the input matches the address found\nand may be interpreted as the likelihood that the correct object has been \nfound.  Geotype is a text string indicating the size of the object found.\nParcel means a single address, ZCTA means a zip code.  Other possible values\ninclude city, state and unknown.  The coordinates are generally the at the\ncenter of the given object.\nAny of the inputs can be empty, but this is likely to result in worse results.\n",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "=",
+                    "=",
+                    "=",
+                    "STRING="
+                ],
+                "description": "Provides geo coding from address to lat/long and vice versa"
+            }
+        ]
+    },
+    {
+        "name": "MAUDE",
+        "symbol": "",
+        "elements": [
+            {
+                "name": "FOITEXT",
+                "signature_names": [
+                    "MDR_REPORT_KEY",
+                    "TEXT_TYPE_CODE",
+                    "FOI_TEXT"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "FDA MAUDE (medical device) database table foitext",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Textual properties of Maude report"
+            },
+            {
+                "name": "PATIENT",
+                "signature_names": [
+                    "MDR_REPORT_KEY",
+                    "SEQUENCE_NUMBER_TREATMENT",
+                    "SEQUENCE_NUMBER_OUTCOME"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "FDA MAUDE (medical device) database table patient",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Maude Patient Data table"
+            },
+            {
+                "name": "DEVICE",
+                "signature_names": [
+                    "MDR_REPORT_KEY",
+                    "MANUFACTURER_D_NAME",
+                    "BRAND_NAME",
+                    "GENERIC_NAME",
+                    "IMPLANT_FLAG",
+                    "MODEL_NUMBER",
+                    "CATALOG_NUMBER",
+                    "LOT_NUMBER"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "FDA MAUDE (medical device) database table device",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Maude Device Basic Data table"
+            },
+            {
+                "name": "MDRFOI",
+                "signature_names": [
+                    "MDR_REPORT_KEY",
+                    "EVENT_TYPE",
+                    "ADVERSE_EVENT_FLAG",
+                    "PRODUCT_PROBLEM_FLAG",
+                    "DATE_REPORT_TO_FDA",
+                    "SINGLE_USE_FLAG"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "FDA MAUDE (medical device) database table mdrfoi",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Medical Device Report data "
+            }
+        ]
+    },
+    {
+        "name": "OIL-AND-GAS",
+        "symbol": "fa-industry",
+        "elements": [
+            {
+                "name": "QUANDL-SEARCH",
+                "signature_names": [
+                    "QUERY",
+                    "DATABASE",
+                    "DATASET"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(quandl-search query database_code dataset_code) is true if a QUANDL search for the query string returns, amongs its results, the database and dataset codes.  These then have to be used in subsequent searches to get the actual data for a given database_code/dataset_code.  The query string can have multiple keywords with + in between them for a conjunctive search for all keywords",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Search for important indicators"
+            },
+            {
+                "name": "QUANDL-METADATA",
+                "signature_names": [
+                    "DATABASE",
+                    "DATASET",
+                    "NAME",
+                    "DESC",
+                    "EARLIEST",
+                    "LATEST",
+                    "FREQUENCY"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(quandl-metadata database_code dataset_code name description earliest latest frequency) shows the metadata for database_code and dataset_code",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "MetaData for a particular indicator"
+            },
+            {
+                "name": "QUANDL-DATA",
+                "signature_names": [
+                    "DATABASE",
+                    "DATASET",
+                    "DATE",
+                    "VALUE"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "NUMBER"
+                ],
+                "usage": "(quandl-data database_code dataset_code date data) is true if QUANDL offers data for that specific database / dataset.  The database / dataset codes MUST be provided.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "="
+                ],
+                "description": "Data for a particular indicator"
+            },
+            {
+                "name": "ONG-TWITTER-INFLUENCER",
+                "signature_names": [
+                    "NAME",
+                    "HANDLE",
+                    "DESCRIPTION"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(ong-twitter-influencer name twitterhandle description) describes those\nlisted as Influencers to follow in the Oil and Gas sector at https://www.oilandgasiq.com/strategy-management-and-information/articles/twitter-oil-gas .",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Data for oil and gas influencers"
+            }
+        ]
+    },
+    {
+        "name": "Procurement-REQUESTS",
+        "symbol": "fa-ambulance",
+        "elements": [
+            {
+                "name": "DELAYED-PROCUREMENT",
+                "signature_names": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                "signature_types": [
+                    "TIMESTAMP",
+                    "REAL",
+                    "INTEGER",
+                    "NUMBER",
+                    "NUMBER",
+                    "STRING",
+                    "STRING",
+                    "REQUEST-WAIT-TIME-MAX"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "STRING=",
+                    "STRING=",
+                    "="
+                ],
+                "description": ""
+            },
+            {
+                "name": "SURGE",
+                "signature_names": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                "signature_types": [
+                    "TIMESTAMP",
+                    "TIMESTAMP",
+                    "REQUEST-COUNT-OVERALL",
+                    "SYSTEM-SURGE-TIME-LIMIT",
+                    "SYSTEM-SURGE-REQUEST-LIMIT"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "Surge at a given PSAP system as a whole"
+            },
+            {
+                "name": "HOSPITAL-SURGE",
+                "signature_names": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                "signature_types": [
+                    "TIMESTAMP",
+                    "TIMESTAMP",
+                    "HOSPITAL-REQUEST-COUNT",
+                    "HOSPITAL-SURGE-TIME-LIMIT",
+                    "HOSPITAL-SURGE-REQUEST-LIMIT"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": ""
+            },
+            {
+                "name": "REQUEST-RESOLUTION",
+                "signature_names": [
+                    "TIMESTAMP",
+                    "RESPONSETO",
+                    "RESPONSE",
+                    "COMMENT"
+                ],
+                "signature_types": [
+                    "TIMESTAMP",
+                    "INTEGER",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Resolution of an earlier Procurement request"
+            },
+            {
+                "name": "REQUEST-ARRIVAL",
+                "signature_names": [
+                    "TIMESTAMP",
+                    "REQUESTID",
+                    "X",
+                    "Y",
+                    "PHONENUM",
+                    "LOCATION",
+                    "CATEGORY"
+                ],
+                "signature_types": [
+                    "TIMESTAMP",
+                    "INTEGER",
+                    "NUMBER",
+                    "NUMBER",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Table of Procurement requests at a PSAP"
+            },
+            {
+                "name": "RESOLUTION-TYPE",
+                "signature_names": [
+                    "TYPE"
+                ],
+                "signature_types": [
+                    "STRING"
+                ],
+                "usage": "The different types of 9-1-1 request resolutions",
+                "no_idea": [
+                    "STRING="
+                ],
+                "description": "Enumerated ways to resolve a Procurement request"
+            },
+            {
+                "name": "REQUEST-TYPE",
+                "signature_names": [
+                    "TYPE"
+                ],
+                "signature_types": [
+                    "STRING"
+                ],
+                "usage": "The different types of Procurement requests",
+                "no_idea": [
+                    "STRING="
+                ],
+                "description": "Enumerated types of Procurement requests"
+            }
+        ]
+    },
+    {
+        "name": "PUBLIC-COMPANIES",
+        "symbol": "fa-industry",
+        "elements": [
+            {
+                "name": "CSIMARKET-CUSTOMER",
+                "signature_names": [
+                    "COMPANY-SYMBOL",
+                    "NAME",
+                    "SYMBOL",
+                    "MARKET-CAP",
+                    "REVENUE",
+                    "INCOME",
+                    "EMPLOYEES"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(csimarket-customer searchsymbol name symbol market-cap revenue income employees)\n means that https://csimarket.com/stocks/markets_glance.php,\n given the search symbol (the symbol for a company) shows in the list of\n customers of the company with the given name and symbol (strings).\n Market-cap, revenue and income are numeric (millions of dollars?),\n as is employees (number of employees). \n <br>This data can only be accessed by supplying the searchstring.  \n The data retrieved are currently not cached.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "=",
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "List customers of a company by symbol"
+            },
+            {
+                "name": "CSIMARKET-COMPETITION",
+                "signature_names": [
+                    "SYMBOL",
+                    "NAME",
+                    "REVENUE",
+                    "MARKETSHARE"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(csimarket-competition searchsymbol competitor revenues marketshare)\n means that https://csimarket.com/stocks/competitionSEG2.php?code=[searchsymbol]\n (search symbol is the symbol for a company) shows in the list of\n competitors for the company a row indicating (we THINK) that the company\n named competitor had revenues (in dollars) in the previous year and a\n market share of marketshare (percent).  That page can show several tables for \n different parts of the business, but our results only show the first table,\n which we think is for the business as a whole.  The results include the \n company identified by the search symbol.\n <br>This data can only be accessed by supplying the searchstring.  \n The data retrieved are currently not cached.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "=",
+                    "="
+                ],
+                "description": "List competitors of a company by symbol"
+            },
+            {
+                "name": "SEC-DOC-FILING-SEARCH",
+                "signature_names": [
+                    "DOCSLINK",
+                    "SEARCHTERM",
+                    "HTMLDOCNAME",
+                    "OCCURS"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "INTEGER"
+                ],
+                "usage": "(sec-doc-filing-search docslink searchterm htmldocname occurs)\n  means that the documents listed at docslink (at http://www.sec.gov )contain the searchterm\n  'occurs' number of times in the specific document at 'htmldocname'",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "="
+                ],
+                "description": ""
+            },
+            {
+                "name": "SEC",
+                "signature_names": [
+                    "COMPANY-SYMBOL",
+                    "FILING-TYPE",
+                    "DOCS",
+                    "DESCRIPTION",
+                    "DATE",
+                    "FILE-FILM"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(sec company-symbol filing-type docs description date file-film)\n means that https://www.sec.gov/cgi-bin/browse-edgar shows for the\n given company symbol a filing of the given type on the given date.\n It also shows for that filing the given description,  Docs is text\n containing links relative to https://www.sec.gov. File-film is the\n last column of the table containing what appear to be two separate\n id's of some sort.\n <br>This data can only be accessed by supplying the searchstring.  \n The data retrieved are currently not cached.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "SEC filings for a company by its symbol"
+            },
+            {
+                "name": "STOCK-SYMBOL",
+                "signature_names": [
+                    "EXCHANGE",
+                    "SYMBOL",
+                    "COMPANYNAME"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(stock-symbol exchange symbol companyname)\nshows data from the tables at http://eoddata.com/stocklist\nThe exchanges currently supported are NYSE and NASDAQ.\nThis data is prefetched at server startup and stored.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "List of company symbols in different markets"
+            }
+        ]
+    },
+    {
+        "name": "SENTIMENTS",
+        "symbol": "",
+        "elements": [
+            {
+                "name": "EDEN-SENTIMENT",
+                "signature_names": [
+                    "PROVIDER",
+                    "TEXT",
+                    "STATUS",
+                    "SCORE",
+                    "SENTIMENT"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "NUMBER",
+                    "STRING"
+                ],
+                "usage": "(eden-sentiment provider text status score sentiment)\n  means that Eden's API returns the output status, score, sentiment\n  for inputs: provider and text.  The inputs are mandatory for this to work.",
+                "no_idea": [
+                    "STRING-EQUAL",
+                    "STRING-EQUAL",
+                    "STRING-EQUAL",
+                    "=",
+                    "STRING-EQUAL"
+                ],
+                "description": "Use EDEN API to get sentiment scores from engines like Google, Amazon, and others"
+            },
+            {
+                "name": "SENTIMENT-CATEGORY",
+                "signature_names": [
+                    "SADNESS",
+                    "JOY",
+                    "FEAR",
+                    "DISGUST",
+                    "ANGER",
+                    "SENTIMENT"
+                ],
+                "signature_types": [
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "STRING"
+                ],
+                "usage": "compute sentiment from raw emotion scores in Watson",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "WATSON-EMOTION",
+                "signature_names": [
+                    "TEXT",
+                    "SADNESS",
+                    "JOY",
+                    "FEAR",
+                    "DISGUST",
+                    "ANGER"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(WatsonEmotion text sadness joy fear disgust anger)\n   is true if the IBM Watson NLP API extracts the entity of that name and type\n   with the sentiment label and score",
+                "no_idea": [
+                    "STRING=",
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": ""
+            },
+            {
+                "name": "WATSON-NLP",
+                "signature_names": [
+                    "TEXT",
+                    "NAME",
+                    "TYPE",
+                    "SENTIMENT",
+                    "SCORE"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "NUMBER"
+                ],
+                "usage": "(WatsonNLP text name type sentiment score)\n   is true if the IBM Watson NLP API extracts the entity of that name and type\n   with the sentiment label and score",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "="
+                ],
+                "description": ""
+            }
+        ]
+    },
+    {
+        "name": "SOCIAL-MEDIA",
+        "symbol": "fa-share-square-o",
+        "elements": [
+            {
+                "name": "TWEETS-FROM",
+                "signature_names": [
+                    "USERHANDLE",
+                    "DATE",
+                    "TIME",
+                    "MESSAGE"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(tweets-from userhandle date time message)\nmeans that twitter.com, when asked for messages sent by userhandle, returns \nas one element of the list a tweet with the given date (string of form\n yyyy-mm-dd), time (string of form hh:mm:ss) and message (string).",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Twitter search by sender of the tweet"
+            },
+            {
+                "name": "TWEET-SEARCH",
+                "signature_names": [
+                    "KEYWORD",
+                    "DATE",
+                    "TIME",
+                    "MESSAGE",
+                    "SENDER",
+                    "TWEETID"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(tweetsearch keyword date time message sender tweetid)\nmeans that twitter.com, when asked for messages related to keyword, returns as \none element of the list a tweet with the given date (string of form yyyy-mm-dd),\ntime (string of form hh:mm:ss), message (string) and sender (string).",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Twitter search by keyword or topic"
+            }
+        ]
+    },
+    {
+        "name": "TEXT/PARSING",
+        "symbol": "fa-file-text",
+        "elements": [
+            {
+                "name": "STARTS-WITH",
+                "signature_names": [
+                    "SUPER",
+                    "SUB"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(string-contains string1 string2)\n  iff string1 starts with string2 (case insensitively) ",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Match a string (case insensitively) at the beginning"
+            },
+            {
+                "name": "STRING=",
+                "signature_names": [
+                    "STRING1",
+                    "STRING2"
+                ],
+                "signature_types": [
+                    "ENTITY",
+                    "ENTITY"
+                ],
+                "usage": "(string= string1 string2) is true if string2 and string1\nare the same (case-sensitive)",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Case sensitive string equality"
+            },
+            {
+                "name": "STRING-CONTAINS-CS",
+                "signature_names": [
+                    "SUPER",
+                    "SUB"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(string-contains string1 string2)\n  iff string2 occurs (case-sensitive) in string1",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Case sensitive substring check"
+            },
+            {
+                "name": "STRING-CONTAINS",
+                "signature_names": [
+                    "SUPER",
+                    "SUB"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(string-contains string1 string2)\n  iff string2 occurs (case-insensitive) in string1",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Case insensitive substring check"
+            },
+            {
+                "name": "STRING-GREATERP",
+                "signature_names": [
+                    "STRING1",
+                    "STRING2"
+                ],
+                "signature_types": [
+                    "UNDEFINED",
+                    "UNDEFINED"
+                ],
+                "usage": "(string-greaterp string1 string2) is true if string2 comes after \nstring1 alphabetically (case-insensitive)",
+                "no_idea": [
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "STRING-EQUAL",
+                "signature_names": [
+                    "STRING1",
+                    "STRING2"
+                ],
+                "signature_types": [
+                    "ENTITY",
+                    "ENTITY"
+                ],
+                "usage": "(string-equal string1 string2) is true if string2 and string1\nare the same (case-insensitive)",
+                "no_idea": [
+                    "STRING-EQUAL",
+                    "STRING-EQUAL"
+                ],
+                "description": "Case insensitive string equality"
+            },
+            {
+                "name": "INT-LIST-STRING=",
+                "signature_names": [
+                    "FIRST-STRING",
+                    "SECOND-STRING"
+                ],
+                "signature_types": [
+                    "ENTITY",
+                    "ENTITY"
+                ],
+                "usage": "(int-list-string= string1 string2) is true if its two string arguments\nare either equal or can be parsed as equal lists of integers separated by a\nsingle delimiter character.  The delimiter need not be the same in the two\nstrings but it must be consistent for each string individually.\nThis is useful for comparing date and time strings, e.g., 2000-01-23 is\nequivalent to 2000/1/23 even though one uses leading zeros and they use \ndifferent delimiters.",
+                "no_idea": [
+                    "INT-LIST-STRING=",
+                    "INT-LIST-STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "SPLIT2",
+                "signature_names": [
+                    "COMPOSITE",
+                    "SEPARATOR",
+                    "BEFORE",
+                    "AFTER"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(split2 string separator before after) is true if string has the form of\nbefore,separator,after where separator does not appear in before.\nIn other words, separator occurs in string, before is the part of string\nthat appears before the first occurrence of separator and after is the part\nthat appears after it.\n<br>This is intended for simple parsing, such as 'lastname, firstname'.\nThere are two ways to generate this relation.  Either string and separator\nor separator, before and after must be given as inputs.\n<br>Note that if the before string contains the separator, the generator\nreturns no tuples, i.e., there is no string s s.t. \n (split2 s \",\" \"a,b\" \"c\") \n",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "PARSE3INTS",
+                "signature_names": [
+                    "COMPOSITE",
+                    "INT1",
+                    "INT2",
+                    "INT3"
+                ],
+                "signature_types": [
+                    "STRING3INT",
+                    "INTEGER",
+                    "INTEGER",
+                    "INTEGER"
+                ],
+                "usage": "<b>(parse3ints string x y z)</b>\n<br> is true if string has the form of three integers, x, y, z,\nseparated by single non-digit characters.  The integers must\nbe strings of decimal digits.  No signs or leading or trailing whitespace\nare allowed.  This is intended for parsing date and time strings, e.g. \n<br><i>(parse3ints \"2009-1-23\" 2009 1 23)</i>.\nThere are two ways to generate tuples.  One is to supply\nstring as input and use it to generate the integers.  \nThe alternative is to supply all the integers and generate the string.",
+                "no_idea": [
+                    "INT-LIST-STRING=",
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": ""
+            },
+            {
+                "name": "PARSE2INTS",
+                "signature_names": [
+                    "COMPOSITE",
+                    "INT1",
+                    "INT2"
+                ],
+                "signature_types": [
+                    "STRING2INT",
+                    "INTEGER",
+                    "INTEGER"
+                ],
+                "usage": "<b>(parse2ints string x y)</b>\n<br> is true if string has the form of two integers, x, y,\nseparated by single non-digit characters.  The integers must\nbe strings of decimal digits.  No signs or leading or trailing whitespace\nare allowed.  This is intended for parsing date and time strings, e.g. \n<br><i>(parse2ints \"12:15\" 12 15)</i>.\nThere are two ways to generate tuples.  One is to supply\nstring as input and use it to generate the integers.  \nThe alternative is to supply all the integers and generate the string.",
+                "no_idea": [
+                    "INT-LIST-STRING=",
+                    "=",
+                    "="
+                ],
+                "description": ""
+            },
+            {
+                "name": "CONCATENATE",
+                "signature_names": [
+                    "FIRST",
+                    "SECOND",
+                    "COMBINED"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(concatenate first second combined)\n  combined results from contatenating first and second with space in between",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Concatenate strings with space in between"
+            }
+        ]
+    },
+    {
+        "name": "TIME",
+        "symbol": "fa-clock-o",
+        "elements": [
+            {
+                "name": "DATE-TIME-STRING",
+                "signature_names": [
+                    "UT",
+                    "UTSTRING"
+                ],
+                "signature_types": [
+                    "INTEGER",
+                    "STRING"
+                ],
+                "usage": "(date-time-string ut string) is true when string is the printable version of a universal time, the required first parameter",
+                "no_idea": [
+                    "=",
+                    "STRING="
+                ],
+                "description": "Convert a universal time to a printable string"
+            },
+            {
+                "name": "TIME-DIFF",
+                "signature_names": [
+                    "TIME1",
+                    "TIME2",
+                    "NSECS"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "INTEGER"
+                ],
+                "usage": "(time-diff time1 time2 nsecs) is true if time1 is nsecs seconds before time2.\nThe times must have the form h:m:s or h:m (24 hour form, other non-numeric\ncharacters can be used instead of the colon)\nwhere 0&lt;=h&lt;24, 0&lt;=m&lt;60, 0&lt;=s&lt;60.\nAny single argument can be generated from the other two.  \nTwo nsecs arguments are considered equivalent if they differ by a multiple of\nthe number of seconds in a day.",
+                "no_idea": [
+                    "INT-LIST-STRING=",
+                    "INT-LIST-STRING=",
+                    "="
+                ],
+                "description": ""
+            },
+            {
+                "name": "DATE-DIFF",
+                "signature_names": [
+                    "DATE1",
+                    "DATE2",
+                    "NDAYS"
+                ],
+                "signature_types": [
+                    "STRING3INT",
+                    "STRING3INT",
+                    "INTEGER"
+                ],
+                "usage": "(date-diff date1 date2 ndays) is true if date1 is ndays before date2.\nThe dates must have the form y-m-d (other non-numeric characters can\nbe used instead of the dash) and be within the range accepted as universal\ntimes.  Any single argument can be generated from the other two.  Ndays is\nnegative if date1 is after date2.",
+                "no_idea": [
+                    "INT-LIST-STRING=",
+                    "INT-LIST-STRING=",
+                    "="
+                ],
+                "description": ""
+            },
+            {
+                "name": "CURRENT-TIME",
+                "signature_names": [
+                    "TIMEZONE",
+                    "TIMESTRING"
+                ],
+                "signature_types": [
+                    "NUMBER",
+                    "STRING3INT"
+                ],
+                "usage": "(current-time timezone timestring) is true if the current time in\na time zone timezone hours west of Greenwich is the timestring (hh-mm-ss).\n<br>The timezone must be supplied and the timestring can be generated from it.",
+                "no_idea": [
+                    "=",
+                    "INT-LIST-STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "CURRENT-DATE",
+                "signature_names": [
+                    "TIMEZONE",
+                    "DATESTRING"
+                ],
+                "signature_types": [
+                    "NUMBER",
+                    "STRING3INT"
+                ],
+                "usage": "(current-date timezone datestring) is true if the current date in\na time zone timezone hours west of Greenwich is the datestring (yyyy-mm-dd).\n<br>The timezone must be supplied and the datestring can be generated from it.",
+                "no_idea": [
+                    "=",
+                    "INT-LIST-STRING="
+                ],
+                "description": ""
+            },
+            {
+                "name": "CURRENT-UT",
+                "signature_names": [
+                    "UT"
+                ],
+                "signature_types": [
+                    "INTEGER"
+                ],
+                "usage": "(current-ut ut) is true if ut is the current universal time.\nSee the universaltime relation.",
+                "no_idea": [
+                    "="
+                ],
+                "description": ""
+            },
+            {
+                "name": "UNIVERSALTIME",
+                "signature_names": [
+                    "UT",
+                    "TZ",
+                    "SECOND",
+                    "MINUTE",
+                    "HOUR",
+                    "DAY",
+                    "MONTH",
+                    "YEAR",
+                    "WEEKDAY"
+                ],
+                "signature_types": [
+                    "INTEGER",
+                    "NUMBER",
+                    "INTEGER",
+                    "INTEGER",
+                    "INTEGER",
+                    "INTEGER",
+                    "INTEGER",
+                    "INTEGER",
+                    "INTEGER"
+                ],
+                "usage": "(universaltime ut tz sec min hr day mon yr weekday)\nis true if ut is the number of seconds, excluding leap seconds, since\nthe beginning of 1900 (GMT) of the time and date specified by (the numbers) \nsec, min, hr, day, mon, yr in a time zone that is tz hours west of Greenwich, \ne.g., California is either 7 or 8 depending on daylight savings.\nTime zones can be fractional, but must be an integral number of seconds.\n<br>Weekday is (believe it or not) zero for Monday up to 6 for Sunday.\n<br>There are two ways to generate this relation.  One is to supply ut and tz.\nThe other is to supply tz, sec, min, hr, day, mon, yr.  In either case tz\nmust be supplied and weekday is generated. ",
+                "no_idea": [
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "=",
+                    "="
+                ],
+                "description": "Time as measured in seconds since some past date"
+            }
+        ]
+    },
+    {
+        "name": "WORLDBANK",
+        "symbol": "fa-globe",
+        "elements": [
+            {
+                "name": "WB-PROJECT-SEARCH",
+                "signature_names": [
+                    "SEARCHSTRING",
+                    "ID",
+                    "REGION",
+                    "COUNTRY",
+                    "STATUS",
+                    "PROJECTNAME",
+                    "AMOUNT"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(wb-project-search searchstring id region country status projectname amount)\n means that the search.worldbank.org api, when given the search string returns\n (as one of the first 100 results) a project with the given id, region, country,\n status, project name and total amount (all strings)",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Search for world bank projects matching keywords"
+            },
+            {
+                "name": "WORLDBANK-DATA",
+                "signature_names": [
+                    "ID",
+                    "COUNTRY",
+                    "YEAR",
+                    "VALUE"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "NUMBER",
+                    "NUMBER"
+                ],
+                "usage": "(worldbank-data id country year value) \nid is the id of what the World Bank calls an indicator, such as SP.POP.TOTL\n(meaning total population; see worldbank-indicator).  The country is a\ncountry name, like Zimbabwe, the year is an integer, like 2007, and the\nvalue is a number which has to be interpreted relative to the indicator.\nThe tuple as a whole means that the value of that indicator for the given \ncountry for the given year was the given value.\nThere is also data for a number of regions, which are effectively treated as\ncountries, e.g., World, or Arab World.  Among other things, this means that\nit is not correct to add up the data for all of the countries in order to get\na total for the world.<br>\nThe indicators cannot be generated (that's what worldbank-indicator is for).\nAll of the data for a given indicator can be generated.  In fact, when any\ndata for an indicator is requested, all of the data for that indicator is\nread and cached.  (Since the data are historical, the cached values should\nbe valid forever.)  However, only a limited amount of data is cached.\nTherefore it is not practical (nor do we consider it to be useful) to\niterate over indicators retrieving data for those indicators.<br>\nThere are about 4000 indicators, but many are poorly documented and many\nhave little useful data.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "=",
+                    "="
+                ],
+                "description": "Get data for a given indicator and country"
+            },
+            {
+                "name": "WORLDBANK-INDICATOR",
+                "signature_names": [
+                    "ID",
+                    "NAME",
+                    "DOC",
+                    "SOURCE"
+                ],
+                "signature_types": [
+                    "STRING",
+                    "STRING",
+                    "STRING",
+                    "STRING"
+                ],
+                "usage": "(worldbank-indicator id name doc source) describes what the World Bank\ncalls indicators, but intuitively might better be called a statistic.\nAll of the arguments are text strings.\nThe id is a code with some internal structure, such as AG.CON.FERT.MT. \nThe name amounts to short documentation, such as Fertilizer consumption \n(metric tons), the doc is a longer description, but sometimes NULL,\nand the source is the name of the data set where the data for the \nindicator is found.  The data is all stored in the server and so is \ncompletely generable.  There are about 4000 indicators, but many are \npoorly documented and many have little useful data.<br>\nSee also worldbank-data.",
+                "no_idea": [
+                    "STRING=",
+                    "STRING=",
+                    "STRING=",
+                    "STRING="
+                ],
+                "description": "Get indicators corresponding to various metrics"
+            }
+        ]
+    }
+]

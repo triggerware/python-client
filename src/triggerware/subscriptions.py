@@ -13,11 +13,11 @@ class Subscription[T](ABC, AbstractQuery[T]):
     A Subscription represents some future change to the data managed by the TW server about which
     a client would like to be notified. Once created, this subscription will accept notifications from
     the server when a change occurs, then call the overridden method handleNotification.
-    
+
     By default, subscriptions are **active** when they are created—they are immediately registered
     with the server and start receiving notifications. This behavior may be changed upon construction,
-    or by calling either the activate or deactivate methods. 
-    
+    or by calling either the activate or deactivate methods.
+
     Subscriptions may either be created by passing in a TriggerwareClient, in which case they
     are immediately registered with the server, OR by passing in a BatchSubscription. See
     BatchSubscription documentation for more information.
@@ -41,6 +41,14 @@ class Subscription[T](ABC, AbstractQuery[T]):
         query: "tw.Query",
         active: bool = True
     ):
+        """
+        Initialize a Subscription instance.
+
+        Args:
+            client_or_batch (tw.TriggerwareClient | tw.BatchSubscription): The client or batch to register with.
+            query (tw.Query): The query to subscribe to.
+            active (bool, optional): Whether the subscription should be active upon creation. Defaults to True.
+        """
         from triggerware.triggerware_client import TriggerwareClient
         from triggerware.jrpc import JsonRpcMessageHandler
         client = client_or_batch if isinstance(client_or_batch, TriggerwareClient) else client_or_batch.client
@@ -65,6 +73,9 @@ class Subscription[T](ABC, AbstractQuery[T]):
     def activate(self):
         """
         Activates the subscription, enabling notifications to be sent from the server.
+
+        Raises:
+            SubscriptionException: If the subscription is already active or is part of a batch.
         """
         from triggerware.types import SubscriptionException
         if self._batch:
@@ -81,6 +92,9 @@ class Subscription[T](ABC, AbstractQuery[T]):
     def deactivate(self):
         """
         Deactivates the subscription, disabling notifications from the server.
+
+        Raises:
+            SubscriptionException: If the subscription is already inactive or is part of a batch.
         """
         from triggerware.types import SubscriptionException
         if self._batch:
@@ -98,6 +112,12 @@ class Subscription[T](ABC, AbstractQuery[T]):
         """
         Adds the subscription to the provided batch. Alternatively, you may call a batch's 
         add_subscription method.
+
+        Args:
+            batch (BatchSubscription): The batch to add this subscription to.
+
+        Raises:
+            SubscriptionException: If the subscription is already active, already part of a batch, or registered with a different client.
         """
         from triggerware.types import SubscriptionException
         if self._active:
@@ -118,6 +138,9 @@ class Subscription[T](ABC, AbstractQuery[T]):
         """
         Removes the subscription from its current batch. Alternatively, you may call a batch's
         remove_subscription method.
+
+        Raises:
+            SubscriptionException: If the subscription is not part of a batch.
         """
         from triggerware.types import SubscriptionException
         if not self._batch:
@@ -130,6 +153,12 @@ class Subscription[T](ABC, AbstractQuery[T]):
         self._batch = None
 
     def _handle_notification_from_batch(self, data: list[T]):
+        """
+        Handles notifications from a batch subscription and dispatches them to the handler.
+
+        Args:
+            data (list[T]): The data received in the notification.
+        """
         for d in data:
             self.handle_notification(d)
     
@@ -138,6 +167,9 @@ class Subscription[T](ABC, AbstractQuery[T]):
         """
         Overload this function in an inheriting class to handle notifications that triggering the
         query will cause this function to activate.
+
+        Args:
+            data (T): The data received in the notification.
         """
         pass
 
@@ -148,7 +180,7 @@ class BatchSubscription(TriggerwareObject):
     may be added to the BatchSubscription, and/or existing members may be removed. This is useful
     because a single transaction of a change in data on the triggerware server may be associated with
     multiple subscriptions.
-    
+
     By grouping these subscriptions, notifications may be properly handled by as many Subscription
     instances as necessary.
     """
@@ -156,6 +188,12 @@ class BatchSubscription(TriggerwareObject):
     method_name: str
 
     def __init__(self, client: "tw.TriggerwareClient"):
+        """
+        Initialize a BatchSubscription instance.
+
+        Args:
+            client (tw.TriggerwareClient): The Triggerware client.
+        """
         from triggerware.jrpc import JsonRpcMessageHandler
         self.client = client
         self.method_name = "batch" + str(client._batch_sub_counter) # type: ignore
@@ -176,6 +214,9 @@ class BatchSubscription(TriggerwareObject):
         """
         Adds a subscription to the batch. Alternatively, you may call a subscription's
         add_to_batch method.
+
+        Args:
+            subscription (Subscription): The subscription to add.
         """
         subscription.add_to_batch(self)
 
@@ -183,6 +224,12 @@ class BatchSubscription(TriggerwareObject):
         """
         Removes a subscription from the batch. Alternatively, you may call a subscription's
         remove_from_batch method.
+
+        Args:
+            subscription (Subscription): The subscription to remove.
+
+        Raises:
+            SubscriptionException: If the subscription is not part of this batch.
         """
         from triggerware.types import SubscriptionException
         if subscription.label not in self._subscriptions:

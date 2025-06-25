@@ -88,14 +88,26 @@ class View[T](AbstractQuery[T]):
         restriction: "tw.ResourceRestricted | None" = None,
         /
     ):
+        """
+        Initialize a View instance.
+
+        Args:
+            client (tw.TriggerwareClient): The Triggerware client.
+            query (tw.Query): The query to execute.
+            restriction (tw.ResourceRestricted | None, optional): Optional restrictions to apply.
+        """
         super().__init__(client, query, restriction)
         self.client.validate_query(self)
 
     def execute(self, restriction: "tw.ResourceRestricted | None" = None) -> "tw.ResultSet[T]":
         """
         Executes the query on the connected triggerware server.
-        :param restriction: Optional restrictions to apply to the query.
-        :return: A result set from the server.
+
+        Args:
+            restriction (tw.ResourceRestricted | None, optional): Optional restrictions to apply to the query.
+
+        Returns:
+            tw.ResultSet[T]: A result set from the server.
         """
         from triggerware.result_set import ResultSet
         params = self.base_parameters.copy()
@@ -143,6 +155,8 @@ class PreparedQuery[T](AbstractQuery[T]):
         self.uses_named_params = registration['usesNamedParameters']
         self.input_signature_names = list(map(lambda x: x['attribute'], registration['inputSignature']))
         self.input_signature_types = list(map(lambda x: x['type'], registration['inputSignature']))
+        if self.handle is not None:
+            self.client.register_handle(self.handle)
 
     def set_parameter(self, position: str | int, param: Any) -> None:
         """Sets an unbound value in the query string to a specific value."""
@@ -210,26 +224,26 @@ class PolledQuery[T](ABC, AbstractQuery[T]):
     As soon as a PolledQuery is created, it is executed by the server, and the response (a set of
     "rows") establishes a "current state" of the query. For each succeeding execution (referred to as
     polling the query):
-    
+
     - The new answer is compared with the current state, and the differences are sent to the
       Triggerware client in a notification containing a RowsDelta value.
     - The new answer then becomes the current state to be used for comparison with the result of the
       next poll of the query.
-    
+
     Like any other query, a PolledQuery has a query string, a language (FOL or SQL), and a namespace.
-    
+
     A polling operation may be performed at any time by executing the Poll method.
     Some details of reporting and polling can be configured with a PolledQueryControlParameters
     value that is supplied to the constructor of a PolledQuery.
-    
+
     An instantiable subclass of PolledQuery must provide a HandleNotification method to
     handle notifications of changes to the current state. Errors can occur during a polling operation
     (e.g., timeout, inability to contact a data source). When such an error occurs, the TW Server will
     send an "error" notification. An instantiable subclass of PolledQuery may provide a
     HandleError method to handle error notifications.
-    
+
     Polling may be terminated when Dispose is called.
-    
+
     If a polling operation is ready to start (whether due to its schedule or an explicit poll request)
     and a previous poll of the query has not completed, the poll operation that is ready to start is
     skipped, and an error notification is sent to the client.
@@ -244,6 +258,16 @@ class PolledQuery[T](ABC, AbstractQuery[T]):
         controls: "tw.PolledQueryControlParameters | None" = None,
         schedule: "tw.PolledQuerySchedule | None" = None,
     ) -> None:
+        """
+        Initialize a PolledQuery instance.
+
+        Args:
+            client (tw.TriggerwareClient): The Triggerware client.
+            query (tw.Query): The query to execute.
+            restriction (tw.ResourceRestricted | None, optional): Optional restrictions to apply.
+            controls (tw.PolledQueryControlParameters | None, optional): Control parameters for polling.
+            schedule (tw.PolledQuerySchedule | None, optional): The polling schedule.
+        """
         from triggerware.jrpc import JsonRpcMessageHandler
         super().__init__(client, query, restriction)
         self.methodName = "poll" + str(self.client._poll_counter) # type: ignore
@@ -271,6 +295,8 @@ class PolledQuery[T](ABC, AbstractQuery[T]):
         self.signature = []
         if 'signature' in registration:
             self.signature = registration['signature']
+        if self.handle is not None:
+            self.client.register_handle(self.handle)
 
         def notify_handler(delta: dict[str, Any] | list[Any]) -> None:
             print("delta is", delta)
@@ -281,7 +307,9 @@ class PolledQuery[T](ABC, AbstractQuery[T]):
         self.client.json_rpc.add_method(self.methodName, JsonRpcMessageHandler(lambda _: {}, notify_handler))
 
     def poll_now(self) -> None:
-        """Perform an on-demand poll of this query (temporarily disregarding the set schedule)."""
+        """
+        Perform an on-demand poll of this query (temporarily disregarding the set schedule).
+        """
         parameters: dict[str, Any] = { 'handle': self.handle }
         if self.timeout is not None:
             parameters['timelimit'] = self.timeout
@@ -292,7 +320,10 @@ class PolledQuery[T](ABC, AbstractQuery[T]):
         """
         Override this method to handle the polled query's changes in data. The polled query's
         schedule determines when this method will be called.
-        :param delta: The changes in the polled query's data - any added or deleted rows are included.
+
+        Args:
+            added (list[Any]): Rows added since the last poll.
+            deleted (list[Any]): Rows deleted since the last poll.
         """
         pass
 

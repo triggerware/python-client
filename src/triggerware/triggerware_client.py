@@ -15,6 +15,7 @@ class TriggerwareClient:
     _batch_sub_counter = 0
     _sub_counter = 0
     _poll_counter = 0
+    _handles: list[int] = []
 
     sql_mode: str
     default_fol_schema: str | None = None
@@ -23,6 +24,13 @@ class TriggerwareClient:
     default_timeout: float | None = None
 
     def __init__(self, address: str, port: int):
+        """
+        Initialize a TriggerwareClient instance.
+
+        Args:
+            address (str): The server address.
+            port (int): The server port.
+        """
         from triggerware.jrpc import JsonRpcClient
         self.json_rpc = JsonRpcClient(address, port)
 
@@ -34,8 +42,13 @@ class TriggerwareClient:
         """
         Executes a query on the connected server. The result is the same as if a tw View had been
         created and executed.
-        :param query: The query to execute.
-        :param restriction: Optional restrictions to apply to the query.
+
+        Args:
+            query (tw.Query): The query to execute.
+            restriction (tw.ResourceRestricted | None, optional): Optional restrictions to apply to the query.
+
+        Returns:
+            tw.ResultSet: The result set from the server.
         """
         from triggerware.queries import View
         view = View(self, query, restriction)
@@ -45,7 +58,14 @@ class TriggerwareClient:
         """
         Validate a query string on the server. This method will raise an InvalidQueryException if
         the query contains errors.
-        :param query: The query to validate.
+
+        Args:
+            query (tw.Query): The query to validate.
+
+        Raises:
+            InvalidQueryException: If the query contains errors.
+            InternalErrorException: If an internal error occurs.
+            ServerErrorException: If a server error occurs.
         """
         from triggerware.jrpc import InternalErrorException, ServerErrorException, JsonRpcException
         from triggerware.types import InvalidQueryException
@@ -68,6 +88,9 @@ class TriggerwareClient:
         Fetches a connection of connectors that Triggerware currently supports. The result is
         compartmentalized into groups, sorted by use case. Each element in a group contains
         signature information for how to use the conncetor in a query.
+
+        Returns:
+            list[tw.RelDataGroup]: The list of RelDataGroup objects.
         """
         from triggerware.types import RelDataElement, RelDataGroup
         raw_groups = self.json_rpc.call('reldata2017', [])
@@ -97,4 +120,13 @@ class TriggerwareClient:
         Closes the connection to the server.
         """
         self.json_rpc.close()
+
+    def register_handle(self, handle: int):
+        """
+        Register a handle with this client.
+
+        Args:
+            handle (int): The handle to register.
+        """
+        self._handles.append(handle)
 
