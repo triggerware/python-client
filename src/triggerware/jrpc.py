@@ -1,4 +1,4 @@
-import atexit, traceback
+import atexit
 import time
 import select
 from io import BytesIO
@@ -7,9 +7,6 @@ import socket
 import threading
 from typing import Any, Callable
 from threading import Condition
-
-def test():
-    return "test"
 
 class JsonRpcMessageHandler:
     execute: Callable[[dict[str, Any] | list[Any]], dict[str, Any]]
@@ -60,7 +57,7 @@ class JsonRpcClient:
         self.socket.connect((address, port))
         threading.Thread(target=self.start_read_thread,daemon=True).start()
         # threading.Thread(target=self.start_write_thread, daemon=True).start()
-        atexit.register(lambda: self.close("atexit"))
+        atexit.register(self.close)
 
     def call(self, method: str, params: dict[str, Any] | list[Any]) -> Any:
         """
@@ -223,12 +220,11 @@ class JsonRpcClient:
         self.current_id += 1
         return new_id
 
-    def close(self, origin: str = "internal"):
+    def close(self):
          """
          Close the client and log where the request came from.
          """
-         print(f"[JsonRpcClient.close] origin={origin}")
-         traceback.print_stack(limit=5)
+         # traceback.print_stack(limit=5)
          self.closed = True
          self.socket.close()
 
