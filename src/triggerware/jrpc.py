@@ -1,4 +1,4 @@
-import atexit
+import atexit, traceback
 import time
 import select
 from io import BytesIO
@@ -57,7 +57,7 @@ class JsonRpcClient:
         self.socket.connect((address, port))
         threading.Thread(target=self.start_read_thread,daemon=True).start()
         # threading.Thread(target=self.start_write_thread, daemon=True).start()
-        atexit.register(self.close)
+        atexit.register(lambda: self.close("atexit"))
 
     def call(self, method: str, params: dict[str, Any] | list[Any]) -> Any:
         """
@@ -220,14 +220,14 @@ class JsonRpcClient:
         self.current_id += 1
         return new_id
 
-    def close(self):
-        """
-        Closes the JSON-RPC client and the underlying socket.
-        """
-        print("closing JSON-RPC client...")
-        self.closed = True
-        self.socket.close()
-
+    def close(self, origin: str = "internal"):
+         """
+         Close the client and log where the request came from.
+         """
+         print(f"[JsonRpcClient.close] origin={origin}")
+         traceback.print_stack(limit=5)
+         self.closed = True
+         self.socket.close()
 
 class JsonRpcException(Exception):
     def __init__(self, message: str, code: int):
