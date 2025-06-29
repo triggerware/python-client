@@ -8,6 +8,9 @@ import threading
 from typing import Any, Callable
 from threading import Condition
 
+def test():
+    return "test"
+
 class JsonRpcMessageHandler:
     execute: Callable[[dict[str, Any] | list[Any]], dict[str, Any]]
     notify: Callable[[dict[str, Any] | list[Any]], None]
