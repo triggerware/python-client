@@ -49,6 +49,11 @@ class TriggerwareClient:
 
         Returns:
             tw.ResultSet: The result set from the server.
+
+        Raises:
+            InvalidQueryException: If the query is invalid.
+            InternalErrorException: If an internal error occurs.
+            ServerErrorException: If a server error occurs.
         """
         from triggerware.queries import View
         view = View(self, query, restriction)
