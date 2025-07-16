@@ -108,6 +108,10 @@ class View[T](AbstractQuery[T]):
 
         Returns:
             tw.ResultSet[T]: A result set from the server.
+
+        Raises:
+            ServerErrorException: If the server encounters an error while executing the query.
+            InvalidQueryException: If the query is invalid or cannot be executed.
         """
         from triggerware.result_set import ResultSet
 
