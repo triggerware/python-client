@@ -36,7 +36,7 @@ class TriggerwareClient:
 
     def execute_query(
         self,
-        query: "tw.Query",
+        query: "tw.Query | str",
         restriction: "tw.ResourceRestricted | None" = None
     ) -> "tw.ResultSet":
         """
@@ -44,7 +44,7 @@ class TriggerwareClient:
         created and executed.
 
         Args:
-            query (tw.Query): The query to execute.
+            query (tw.Query | str): The query to execute. Defaults to a fol query.
             restriction (tw.ResourceRestricted | None, optional): Optional restrictions to apply to the query.
 
         Returns:
@@ -56,10 +56,13 @@ class TriggerwareClient:
             ServerErrorException: If a server error occurs.
         """
         from triggerware.queries import View
+        if isinstance(query, str):
+            from triggerware.queries import FolQuery
+            query = FolQuery(query)
         view = View(self, query, restriction)
         return view.execute()
 
-    def validate_query(self, query: "tw.Query"):
+    def validate_query(self, query: "tw.Query | str"):
         """
         Validate a query string on the server. This method will raise an InvalidQueryException if
         the query contains errors.
@@ -74,6 +77,9 @@ class TriggerwareClient:
         """
         from triggerware.jrpc import InternalErrorException, ServerErrorException, JsonRpcException
         from triggerware.types import InvalidQueryException
+        if isinstance(query, str):
+            from triggerware.queries import FolQuery
+            query = FolQuery(query)
         params = [
             query.query,
             query.language,

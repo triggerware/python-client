@@ -64,9 +64,13 @@ class AbstractQuery[T](Query, ResourceRestricted, TriggerwareObject):
             "namespace": self.schema,
         }
 
+        if client.default_fetch_size is not None:
+            self.row_limit = client.default_fetch_size
+        if client.default_timeout is not None:
+            self.timeout = client.default_timeout
         if restriction is not None:
-            self.row_limit = restriction.row_limit
-            self.timeout = restriction.timeout
+            self.row_limit = restriction.row_limit or self.row_limit
+            self.timeout = restriction.timeout or self.timeout
         if self.row_limit is not None:
             self.base_parameters["limit"] = self.row_limit
         if self.timeout is not None:
