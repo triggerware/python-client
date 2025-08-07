@@ -165,7 +165,7 @@ class JsonRpcClient:
 
                         obj, pos = self.decoder.raw_decode(self.buffer.read().decode('utf-8'))
                         if obj["jsonrpc"] == "2.0":
-                            print("   GOT A MESSAGE! It was ", obj)
+                            # print("   GOT A MESSAGE! It was ", obj)
                             pass
                         else:
                             raise InvalidRequestException()
